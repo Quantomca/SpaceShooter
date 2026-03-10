@@ -3,23 +3,21 @@
 public class Bullet : MonoBehaviour
 {
     public float flySpeed = 5f;
+    public int damage;
 
     void Update()
     {
-        var newPosition = transform.position;
-            
-        newPosition.y += Time.deltaTime * flySpeed;
-
-        transform.position = newPosition;
+        transform.position += Vector3.up * flySpeed * Time.deltaTime;
     }
-    public int damage;
-private void OnTriggerEnter2D(Collider2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         var enemy = collision.GetComponent<EnemyHealth>();
+
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }
