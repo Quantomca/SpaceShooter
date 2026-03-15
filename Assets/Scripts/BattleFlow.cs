@@ -10,6 +10,11 @@ public class BattleFlow : MonoBehaviour
 
     bool gameEnded = false;
 
+    private void Awake()
+    {
+        EnemyHealth.LivingEnemyCount = 0;
+    }
+
     private void Start()
     {
         gameOverUI.SetActive(false);
@@ -36,7 +41,7 @@ public class BattleFlow : MonoBehaviour
         gameOverUI.SetActive(true);
         bgMusic.SetActive(false);
 
-        Time.timeScale = 0f; // dừng game
+        Time.timeScale = 0f;
     }
 
     private void OnGameWin()
@@ -46,7 +51,7 @@ public class BattleFlow : MonoBehaviour
 
         playerHealth.gameObject.SetActive(false);
 
-        Time.timeScale = 0f; // dừng game
+        Time.timeScale = 0f;
     }
 
     public void ReturnToMainMenu()
